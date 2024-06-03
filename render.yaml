@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: django-app
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn password_gen.wsgi
+    plan: free
+    region: oregon
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: password_gen.settings
+      - key: SECRET_KEY
+        value: YOUR_SECRET_KEY
+      - key: DATABASE_URL
+        value: YOUR_DATABASE_URL
